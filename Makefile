@@ -18,9 +18,9 @@ setup:
 lint:
 	@echo "Starting  lint"
 	python -m json.tool < inputs/rectangle.json >> /dev/null
-	yamllint -s inputs/circle.yml
-	find . -name "*.py" -not -path "./small/*" | xargs pylint
-	find . -name "*.py" -not -path "./small/*" | xargs black -l 80 --check
+	python -m yamllint -s inputs/circle.yml
+	find . -name "*.py" -not -path "./small/*" | xargs python -m pylint
+	find . -name "*.py" -not -path "./small/*" | xargs python -m black -l 80 --check
 	@echo "Completed lint"
 
 .PHONY: unit
