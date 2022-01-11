@@ -28,6 +28,6 @@ jobs:
       - name: Run unit tests
         run: |
           make unit
-      - name: Run all
+      - name: Run fundamental.py and complete.py
         run: |
-          make all
+          make run
