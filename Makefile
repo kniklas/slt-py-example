@@ -19,6 +19,7 @@ lint:
 	@echo "Starting  lint"
 	python -m json.tool < inputs/rectangle.json >> /dev/null
 	python -m yamllint -s inputs/circle.yml
+	python -m yamllint -s .github/workflows/*.yml
 	find . -name "*.py" -not -path "./small/*" | xargs python -m pylint
 	find . -name "*.py" -not -path "./small/*" | xargs python -m black -l 80 --check
 	@echo "Completed lint"
