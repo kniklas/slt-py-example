@@ -6,13 +6,16 @@ File: fundamental.py
 Purpose: Fundamental techniques demonstration.
 """
 import sys
-from math import pi
+from math import pi, sqrt
 
 
 def main(argv):
     """
     Execution starts here.
     """
+
+    # Disable warning R0914 (too many local variables after adding Triangle)
+    # pylint: disable=R0914
 
     # Get the units from the command line arguments or manually
     # from user input
@@ -36,7 +39,7 @@ def main(argv):
             raise
 
         perim = round(pi * radius * 2, 2)
-        print("radius {radius} -> perim {perim} {units}")
+        print(f"radius {radius} -> perim {perim} {units}")
 
     # Create rectangle dictionary where key is a string and value
     # is a 2-tuple of length and width integers, respectively.
@@ -56,6 +59,29 @@ def main(argv):
         print(key)
         print(f" {length}x{width} -> area {area} {units} sq")
         print(f" ({length}+{width})x2 -> perim {perim} {units}")
+
+    # Create triangle dictionary where key is a string and value
+    # is a 3-tuple of base, left and right leg respectively.
+    triangle_dict = {
+        "triangle1": (8, 2, 10),
+        "triangle2": (3, 3, 3),
+        "triangle3": (1, 6, 1),
+    }
+
+    # Iterate over each dictionary item, including the key and the value,
+    # and compute the triangle's area and perimeter.
+    for key, val in triangle_dict.items():
+        base = val[0]
+        left = val[1]
+        right = val[2]
+        perim = base + left + right
+        area = round(
+            sqrt(perim * (perim - base) * (perim - left) * (perim - right)),
+            2,
+        )
+        print(key)
+        print(f" {base} {left} {right} -> area {area} {units} sq")
+        print(f" {base}+{left}+{right} -> perim {perim} {units}")
 
 
 def get_units(argv):
