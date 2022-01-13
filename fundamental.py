@@ -14,9 +14,6 @@ def main(argv):
     Execution starts here.
     """
 
-    # Disable warning R0914 (too many local variables after adding Triangle)
-    # pylint: disable=R0914
-
     # Get the units from the command line arguments or manually
     # from user input
     units = get_units(argv)
@@ -71,17 +68,18 @@ def main(argv):
     # Iterate over each dictionary item, including the key and the value,
     # and compute the triangle's area and perimeter.
     for key, val in triangle_dict.items():
-        base = val[0]
-        left = val[1]
-        right = val[2]
-        perim = base + left + right
+        # Instead of variables used list values to avoid linting warning: R0914
+        # (too many local variables after adding Triangle).
+        perim = val[0] + val[1] + val[2]
         area = round(
-            sqrt(perim * (perim - base) * (perim - left) * (perim - right)),
+            sqrt(
+                perim * (perim - val[0]) * (perim - val[1]) * (perim - val[2])
+            ),
             2,
         )
         print(key)
-        print(f" {base} {left} {right} -> area {area} {units} sq")
-        print(f" {base}+{left}+{right} -> perim {perim} {units}")
+        print(f" {val[0]} {val[1]} {val[2]} -> area {area} {units} sq")
+        print(f" {val[0]}+{val[1]}+{val[2]} -> perim {perim} {units}")
 
 
 def get_units(argv):
