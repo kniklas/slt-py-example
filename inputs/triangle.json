@@ -1,0 +1,19 @@
+{
+  "triangle_list": [
+    {
+      "base_leg": 7,
+      "left_leg": 3,
+      "right_leg":4
+    },
+    {
+      "base_leg": 1,
+      "left_leg": 2,
+      "right_leg":2
+    },
+    {
+      "base_leg": 2,
+      "left_leg": 2,
+      "right_leg":2
+    }
+  ]
+}
